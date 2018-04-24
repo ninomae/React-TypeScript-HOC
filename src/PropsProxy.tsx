@@ -4,9 +4,9 @@ interface State {
     name: string;
 }
 
-const PropsProxy = (WrappedComponent: new() => React.Component) => {
-    return class  PP extends React.Component<{}, State> {
-        constructor(props: {}){
+const propsProxy = <T extends {}>(WrappedComponent: new() => React.Component<T, {}, {}>) => {
+    return class  PP extends React.Component<T, State> {
+        constructor(props: T){
             super(props);
             this.state = {
                 name: ''
@@ -25,4 +25,4 @@ const PropsProxy = (WrappedComponent: new() => React.Component) => {
     }
 };
 
-export default PropsProxy;
+export default propsProxy;
